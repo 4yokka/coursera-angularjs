@@ -9,10 +9,12 @@
   function LunchCheckerController($scope) {
     $scope.message = "";
     $scope.lunch = "";
+    $scope.msgClass = "";
 
     $scope.checkLunch = function() {
       if ($scope.lunch === "") {
         $scope.message = "Please enter data first";
+        $scope.msgClass = "message-warn";
       } else {
         var lunchDishes = $scope.lunch
                         .split(',')                 // splits input string
@@ -20,6 +22,7 @@
                           return value.trim().length > 0;
                         })
                         .length;
+        $scope.msgClass = "message-ok";
 
         if (lunchDishes >= 0 && lunchDishes <= 3) {
           console.debug(lunchDishes);

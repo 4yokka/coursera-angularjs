@@ -1,8 +1,33 @@
-<ul>
+<div class="container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Short Name</th>
+        <th>Description</th>
+        <th>Like it?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in found">
+        <td>{{ item.name }}</td>
+        <td>{{ item.short_name }}</td>
+        <td>{{ item.description}}</td>
+        <td>
+          <button ng-click="onRemove({index: $index});" class="btn btn-warning">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Don't want this one!
+          </button>
+        </td>
+      </tr>
+    </tbody>
+<!-- <ul>
   <li ng-repeat="item in found">
     {{ item.name }} <br>
     {{ item.short_name }} <br>
     {{ item.description}}
     <button ng-click="onRemove({index: $index});">Don't want this one!</button>
   </li>
-</ul>
+</ul> -->
+
+  </table>
+</div>

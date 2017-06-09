@@ -10,12 +10,14 @@
    <div class="container" ng-controller="NarrowItDownController as narrower">
     <h1>Narrow Down Your Chinese Menu Choice</h1>
 
-    <div class="form-group">
-      <input type="text" placeholder="search term" class="form-control" ng-model="narrower.searchTerm">
-    </div>
-    <div class="form-group narrow-button">
-      <button class="btn btn-primary" ng-click="narrower.narrowDown();">Narrow It Down For Me!</button>
-      <span class="loader"></span>
+    <div class="narrowdown-form">
+      <div class="form-group">
+        <input type="text" placeholder="search term" class="form-control" ng-model="narrower.searchTerm">
+      </div>
+      <div class="form-group narrow-button">
+        <button class="btn btn-primary" ng-click="narrower.narrowDown();">Narrow It Down For Me!</button>
+        <span class="loader" ng-show="narrower.loader"></span>
+      </div>
     </div>
 
     <found-items

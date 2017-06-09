@@ -18,16 +18,25 @@
     result.narrowDown = function() {
       result.found = [];
       result.loader = true;
-      
-      var promise = MenuSearchService.getMatchedMenuItems(result.searchTerm);
-      promise.then(function(response) {
+      result.nothingFound = false;
+
+      if (!result.searchTerm) {
+        result.nothingFound = true;
         result.loader = false;
-        result.found = response;
-      })
-      .catch(function(error) {
-        console.log("Something went terribly wrong.");
-        // console.log(error);
-      });
+      } else {
+        var promise = MenuSearchService.getMatchedMenuItems(result.searchTerm);
+        promise.then(function(response) {
+          result.loader = false;
+          result.found = response;
+          if (response.length < 1) {
+            result.nothingFound = true;
+          }
+        })
+        .catch(function(error) {
+          console.log("Something went terribly wrong.");
+          // console.log(error);
+        });
+      }
     }
 
     result.removeItem = function (itemIndex) {
@@ -70,6 +79,7 @@
       templateUrl: 'foundItems.html',
       scope: {
         found: '<',
+        nothingFound: '<',
         onRemove: '&'
       }
     };
